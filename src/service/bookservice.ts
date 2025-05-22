@@ -1,9 +1,9 @@
-import {
-    BookControllerApi,
-} from "@binary-bridges/binary-bridges-axios-client-api";
+import {BookControllerApi} from "@binary-bridges/binary-bridges-axios-client-api";
 
 import type {
-    BookDTO,
+    BookDTO
+} from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
+import {
     BookDTOCategoryEnum
 } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 

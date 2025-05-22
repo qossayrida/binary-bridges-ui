@@ -29,10 +29,10 @@ export const Select: React.FC<SelectProps> = ({
                                                   className = ''
                                               }) => {
     return (
-        <div className={`w-full ${className}`}>
+        <div className={`ui-w-full ${className}`}>
             {label && (
-                <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-2">
-                    {label} {required && <span className="text-red-500">*</span>}
+                <label htmlFor={name} className="ui-input-label">
+                    {label} {required && <span className="ui-input-required">*</span>}
                 </label>
             )}
             <select
@@ -42,8 +42,8 @@ export const Select: React.FC<SelectProps> = ({
                 onChange={onChange}
                 disabled={disabled}
                 required={required}
-                className={`w-full px-4 py-3 border rounded-lg outline-none transition-all focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    error ? 'border-red-300 focus:ring-red-500' : 'border-gray-300'
+                className={`ui-select ${
+                    error ? 'ui-select-error' : ''
                 }`}
             >
                 <option value="">Select an option</option>
@@ -53,7 +53,7 @@ export const Select: React.FC<SelectProps> = ({
                     </option>
                 ))}
             </select>
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+            {error && <p className="ui-input-error-text">{error}</p>}
         </div>
     );
 };

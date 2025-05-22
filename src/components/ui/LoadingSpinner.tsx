@@ -16,24 +16,24 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
                                                                   centered = false
                                                               }) => {
     const sizeClasses = {
-        sm: 'h-4 w-4',
-        md: 'h-6 w-6',
-        lg: 'h-8 w-8',
-        xl: 'h-12 w-12'
+        sm: 'ui-spinner-sm',
+        md: 'ui-spinner-md',
+        lg: 'ui-spinner-lg',
+        xl: 'ui-spinner-xl'
     };
 
     const colorClasses = {
-        blue: 'border-blue-500',
-        white: 'border-white',
-        gray: 'border-gray-500',
-        green: 'border-green-500',
-        red: 'border-red-500'
+        blue: 'ui-spinner-blue',
+        white: 'ui-spinner-white',
+        gray: 'ui-spinner-gray',
+        green: 'ui-spinner-green',
+        red: 'ui-spinner-red'
     };
 
     const spinnerElement = (
         <div
             className={`
-        animate-spin rounded-full border-2 border-t-transparent
+        ui-spinner
         ${sizeClasses[size]}
         ${colorClasses[color]}
         ${className}
@@ -43,13 +43,13 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
     if (text) {
         const containerClasses = centered
-            ? 'flex flex-col items-center justify-center p-8'
-            : 'flex items-center space-x-3';
+            ? 'ui-spinner-container-centered'
+            : 'ui-spinner-container ui-space-x-3';
 
         return (
             <div className={containerClasses}>
                 {spinnerElement}
-                <span className={`text-gray-600 ${centered ? 'mt-3' : ''}`}>
+                <span className={`ui-spinner-text ${centered ? 'ui-spinner-text-centered' : ''}`}>
           {text}
         </span>
             </div>
@@ -58,7 +58,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 
     if (centered) {
         return (
-            <div className="flex items-center justify-center p-8">
+            <div className="ui-spinner-container-centered">
                 {spinnerElement}
             </div>
         );
@@ -71,7 +71,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
 export const PageLoader: React.FC<{ text?: string }> = ({
                                                             text = 'Loading...'
                                                         }) => (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="ui-page-loader">
         <LoadingSpinner size="xl" text={text} centered />
     </div>
 );
@@ -79,9 +79,9 @@ export const PageLoader: React.FC<{ text?: string }> = ({
 // Section-level loading component
 export const SectionLoader: React.FC<{ text?: string; className?: string }> = ({
                                                                                    text = 'Loading...',
-                                                                                   className = 'py-12'
+                                                                                   className = 'ui-py-12'
                                                                                }) => (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div className={`ui-section-loader ${className}`}>
         <LoadingSpinner size="lg" text={text} centered />
     </div>
 );

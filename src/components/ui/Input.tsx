@@ -21,61 +21,56 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
                                                                    className = '',
                                                                    ...props
                                                                }, ref) => {
-    const baseClasses = [
-        'px-4 py-3 border rounded-lg transition-all duration-200',
-        'focus:ring-2 focus:ring-blue-500 focus:border-transparent',
-        'outline-none placeholder-gray-400',
-        fullWidth ? 'w-full' : '',
-        error ? 'border-red-300 focus:ring-red-500' : 'border-gray-300',
-        leftIcon ? 'pl-12' : '',
-        rightIcon ? 'pr-12' : ''
-    ].join(' ');
+    const getInputClasses = () => {
+        const classes = ['ui-input'];
 
-    const variantClasses = {
-        default: 'bg-white',
-        filled: 'bg-gray-50 hover:bg-gray-100',
-        outlined: 'bg-transparent border-2'
+        if (error) classes.push('ui-input-error');
+        if (leftIcon) classes.push('ui-input-with-left-icon');
+        if (rightIcon) classes.push('ui-input-with-right-icon');
+
+        if (variant === 'filled') classes.push('ui-input-filled');
+        if (variant === 'outlined') classes.push('ui-input-outlined');
+
+        if (className) classes.push(className);
+
+        return classes.join(' ');
     };
 
     return (
-        <div className={fullWidth ? 'w-full' : ''}>
+        <div className={fullWidth ? 'ui-input-wrapper' : ''}>
             {label && (
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="ui-input-label">
                     {label}
-                    {props.required && <span className="text-red-500 ml-1">*</span>}
+                    {props.required && <span className="ui-input-required">*</span>}
                 </label>
             )}
 
-            <div className="relative">
+            <div className="ui-input-container">
                 {leftIcon && (
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <span className="text-gray-400">{leftIcon}</span>
+                    <div className="ui-input-icon-left">
+                        <span>{leftIcon}</span>
                     </div>
                 )}
 
                 <input
                     ref={ref}
-                    className={`
-            ${baseClasses}
-            ${variantClasses[variant]}
-            ${className}
-          `}
+                    className={getInputClasses()}
                     {...props}
                 />
 
                 {rightIcon && (
-                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                        <span className="text-gray-400">{rightIcon}</span>
+                    <div className="ui-input-icon-right">
+                        <span>{rightIcon}</span>
                     </div>
                 )}
             </div>
 
             {error && (
-                <p className="mt-1 text-sm text-red-600">{error}</p>
+                <p className="ui-input-error-text">{error}</p>
             )}
 
             {helperText && !error && (
-                <p className="mt-1 text-sm text-gray-500">{helperText}</p>
+                <p className="ui-input-helper-text">{helperText}</p>
             )}
         </div>
     );

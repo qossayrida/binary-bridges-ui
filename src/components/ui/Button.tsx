@@ -4,7 +4,7 @@ import {LoadingSpinner} from './LoadingSpinner';
 export interface ButtonProps {
     children: React.ReactNode;
     onClick?: () => void;
-    type?: 'button' | 'submit' | 'reset';
+    type?: 'button' | 'submit' | 'reset' | undefined;
     disabled?: boolean;
     loading?: boolean;
     variant?: 'primary' | 'secondary' | 'danger' | 'success' | 'facebook' | 'outline';
@@ -17,7 +17,7 @@ export interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
                                                   children,
                                                   onClick,
-                                                  type = ' ',
+                                                  type = 'button',
                                                   disabled = false,
                                                   loading = false,
                                                   variant = 'primary',
@@ -26,27 +26,22 @@ export const Button: React.FC<ButtonProps> = ({
                                                   fullWidth = false,
                                                   icon
                                               }) => {
-    const baseClasses = [
-        'inline-flex items-center justify-center',
-        'font-medium rounded-lg transition-all duration-200',
-        'focus:outline-none focus:ring-2 focus:ring-offset-2',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
-        fullWidth ? 'w-full' : ''
-    ].join(' ');
+    const getButtonClasses = () => {
+        const classes = ['ui-btn'];
 
-    const sizeClasses = {
-        sm: 'px-3 py-1.5 text-sm',
-        md: 'px-4 py-2 text-base',
-        lg: 'px-6 py-3 text-lg'
-    };
+        // Add size class
+        classes.push(`ui-btn-${size}`);
 
-    const variantClasses = {
-        primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-        secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500',
-        danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
-        success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
-        facebook: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-        outline: 'border-2 border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500'
+        // Add variant class
+        classes.push(`ui-btn-${variant}`);
+
+        // Add full width class if needed
+        if (fullWidth) classes.push('ui-btn-full');
+
+        // Add custom class if provided
+        if (className) classes.push(className);
+
+        return classes.join(' ');
     };
 
     const isDisabled = disabled || loading;
@@ -56,21 +51,16 @@ export const Button: React.FC<ButtonProps> = ({
             type={type}
             onClick={onClick}
             disabled={isDisabled}
-            className={`
-        ${baseClasses}
-        ${sizeClasses[size]}
-        ${variantClasses[variant]}
-        ${className}
-      `}
+            className={getButtonClasses()}
         >
             {loading ? (
                 <>
-                    <LoadingSpinner size="sm" className="mr-2"/>
+                    <LoadingSpinner size="sm" className="ui-mr-2"/>
                     Processing...
                 </>
             ) : (
                 <>
-                    {icon && <span className="mr-2">{icon}</span>}
+                    {icon && <span className="ui-btn-icon">{icon}</span>}
                     {children}
                 </>
             )}

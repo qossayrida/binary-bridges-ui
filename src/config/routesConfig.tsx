@@ -1,4 +1,4 @@
-import {JSX} from 'react';
+import type { JSX } from 'react';
 import { HomePage } from '../pages/HomePage.tsx';
 import { AuthorsPage } from '../pages/AuthorsPage.tsx';
 import { BooksPage } from '../pages/BooksPage.tsx';
@@ -9,6 +9,7 @@ interface AppRoute {
     label: string;
     icon: string;
     element: JSX.Element;
+    badge?: string;
 }
 
 export const appRoutes: AppRoute[] = [

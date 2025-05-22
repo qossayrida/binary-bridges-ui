@@ -24,7 +24,7 @@ export const AuthPage: React.FC = () => {
         }
     }, [location, navigate, login]);
 
-    const handleAuthSuccess = (token: string, userData?: any) => {
+    const handleAuthSuccess = (token: string) => {
         login(token);
         navigate('/home');
     };

@@ -3,28 +3,32 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://qossayrida.github.io/binary-bridges-ui/",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@binary-bridges/binary-bridges-axios-client-api": "file:../binary-bridges-typescript-axios-client-sdk/binary-bridges-binary-bridges-axios-client-api-v1.0.0.tgz",
+    "axios": "^1.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0",
-    "axios": "^1.3.0"
+    "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^18.0.0",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
-    "@types/node": "^18.0.0",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
