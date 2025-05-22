@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://qossayrida.github.io/binary-bridges-ui/",
   "scripts": {
+
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
