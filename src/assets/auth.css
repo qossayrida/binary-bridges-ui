@@ -1,0 +1,115 @@
+.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, #e0f2fe, #f0f9ff); /* Optional blue gradient */
+    overflow: hidden;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.auth-header p {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.auth-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    color: #6b7280;
+}
+
+.auth-toggle {
+    display: flex;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.auth-toggle button {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.auth-toggle button.active {
+    background-color: white;
+    color: #2563eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.auth-toggle button.inactive {
+    color: #6b7280;
+}
+
+.auth-facebook {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border: none;
+}
+
+.auth-facebook:hover {
+    background-color: #1d4ed8;
+}
+
+.auth-divider {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #d1d5db;
+}
+
+.auth-divider span {
+    position: relative;
+    background-color: white;
+    color: #6b7280;
+    padding: 0 0.5rem;
+    font-size: 0.875rem;
+}

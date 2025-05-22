@@ -1,0 +1,129 @@
+.defaultbutton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition-property: all;
+    transition-duration: 200ms;
+    outline: none;
+    box-shadow: 0 0 0 2px transparent;
+    box-shadow: 0 0 0 2px var(--tw-ring-offset-color), 0 0 0 4px var(--tw-ring-color);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.defaultbutton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Size classes */
+.defaultbutton-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.defaultbutton-md {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.defaultbutton-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* Variant classes */
+.defaultbutton-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.defaultbutton-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.defaultbutton-primary:focus {
+    --tw-ring-color: #3b82f6;
+}
+
+.defaultbutton-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.defaultbutton-secondary:hover {
+    background-color: #d1d5db;
+}
+
+.defaultbutton-secondary:focus {
+    --tw-ring-color: #6b7280;
+}
+
+.defaultbutton-danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+.defaultbutton-danger:hover {
+    background-color: #b91c1c;
+}
+
+.defaultbutton-danger:focus {
+    --tw-ring-color: #ef4444;
+}
+
+.defaultbutton-success {
+    background-color: #16a34a;
+    color: white;
+}
+
+.defaultbutton-success:hover {
+    background-color: #15803d;
+}
+
+.defaultbutton-success:focus {
+    --tw-ring-color: #22c55e;
+}
+
+.defaultbutton-facebook {
+    background-color: #2563eb;
+    color: white;
+}
+
+.defaultbutton-facebook:hover {
+    background-color: #1d4ed8;
+}
+
+.defaultbutton-facebook:focus {
+    --tw-ring-color: #3b82f6;
+}
+
+.defaultbutton-outline {
+    border-width: 2px;
+    border-color: #d1d5db;
+    color: #374151;
+    background-color: transparent;
+}
+
+.defaultbutton-outline:hover {
+    background-color: #f9fafb;
+}
+
+.defaultbutton-outline:focus {
+    --tw-ring-color: #9ca3af;
+}
+
+/* Full width */
+.defaultbutton-fullwidth {
+    width: 100%;
+}
+
+/* Icon spacing */
+.defaultbutton-icon {
+    margin-right: 0.5rem;
+}
