@@ -6,7 +6,7 @@
   "homepage": "https://qossayrida.github.io/binary-bridges-ui/",
   "scripts": {
 
-    "dev": "vite",
+    "dev": "vite --mode development",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
