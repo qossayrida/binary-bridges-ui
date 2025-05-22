@@ -9,7 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 const App: React.FC = () => {
     return (
         <AuthProvider>
-            <Router>
+            <Router basename="/binary-bridges-ui">
                 <Routes>
                     <Route path="/auth" element={<AuthPage />} />
 
