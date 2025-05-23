@@ -7,6 +7,8 @@ import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 
 const App: React.FC = () => {
+    console.log(import.meta.env.MODE); // "development" in dev mode
+
     return (
         <AuthProvider>
             <Router basename="/binary-bridges-ui">
