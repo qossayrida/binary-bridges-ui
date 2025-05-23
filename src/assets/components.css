@@ -20,6 +20,7 @@
     --ui-color-green-600: #059669;
     --ui-color-green-700: #047857;
     --ui-color-white: #ffffff;
+    --ui-color-black: #000000; /* Added black color */
     --ui-color-transparent: transparent;
 }
 
@@ -429,6 +430,7 @@
     border-radius: 0.5rem;
     transition-property: all;
     transition-duration: 200ms;
+    border: none; /* Ensure buttons don't have default borders */
 }
 
 .ui-btn:focus {
@@ -547,7 +549,12 @@
 }
 
 /* Input Styles */
+/* Input Container Styles */
 .ui-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* horizontal centering */
+    justify-content: center; /* vertical centering */
     width: 100%;
 }
 
@@ -564,36 +571,37 @@
     margin-left: 0.25rem;
 }
 
-.ui-input-container {
-    position: relative;
-}
-
+/* Input Field Base Styles */
 .ui-input {
-    width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--ui-color-gray-300);
+    border: 1px solid var(--ui-color-black); /* Default black border */
+    margin: 0.5rem 0; /* Margin for spacing */
     border-radius: 0.5rem;
-    transition-property: all;
-    transition-duration: 200ms;
+    background-color: var(--ui-color-white);
+    color: var(--ui-color-black); /* Black text color */
+    font-size: 1rem;
+    transition: all 0.2s ease;
     outline: none;
 }
 
+/* Focus State */
 .ui-input:focus {
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-    --tw-ring-color: var(--ui-color-blue-500);
-    border-color: transparent;
+    border-color: var(--ui-color-gray-300); /* Light gray border on focus */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
+/* Error State */
 .ui-input-error {
-    border-color: var(--ui-color-red-300);
+    border-color: var(--ui-color-red-500);
+    background-color: var(--ui-color-white);
 }
 
 .ui-input-error:focus {
-    --tw-ring-color: var(--ui-color-red-500);
+    border-color: var(--ui-color-red-500);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
 }
 
+/* Filled Variant */
 .ui-input-filled {
     background-color: var(--ui-color-gray-50);
 }
@@ -602,11 +610,13 @@
     background-color: var(--ui-color-gray-100);
 }
 
+/* Outlined Variant */
 .ui-input-outlined {
     background-color: transparent;
     border-width: 2px;
 }
 
+/* Icon Styles */
 .ui-input-with-left-icon {
     padding-left: 3rem;
 }
@@ -615,30 +625,24 @@
     padding-right: 3rem;
 }
 
-.ui-input-icon-left {
+.ui-input-icon-left,
+.ui-input-icon-right {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding-left: 0.75rem;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--ui-color-gray-400);
+    pointer-events: none;
+}
+
+.ui-input-icon-left {
+    left: 1rem;
 }
 
 .ui-input-icon-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    padding-right: 0.75rem;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
-    color: var(--ui-color-gray-400);
+    right: 1rem;
 }
 
+/* Helper Text Styles */
 .ui-input-error-text {
     margin-top: 0.25rem;
     font-size: 0.875rem;
@@ -650,6 +654,7 @@
     font-size: 0.875rem;
     color: var(--ui-color-gray-500);
 }
+
 
 /* Select Styles */
 .ui-select {
@@ -760,3 +765,4 @@
     align-items: center;
     justify-content: center;
 }
+

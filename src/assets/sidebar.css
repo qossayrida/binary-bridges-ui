@@ -333,10 +333,10 @@
 
 /* Content Area */
 .sidebar-content-area {
-    padding: 1.5rem;
-    flex: 1;
-    overflow-y: auto;
-    height: calc(100vh - 80px); /* Subtract header height */
+    /*padding: 1.5rem;*/
+    /*flex: 1;*/
+    /*overflow-y: auto;*/
+    /*height: calc(100vh - 80px); !* Subtract header height *!*/
 }
 
 .sidebar-content-card {

@@ -1,0 +1,116 @@
+/* Page Styles CSS with custom prefix */
+:root {
+    --page-color-blue-50: #eff6ff;
+    --page-color-indigo-100: #e0e7ff;
+    --page-color-indigo-700: #4338ca;
+    --page-color-gray-800: #1f2937;
+    --page-color-red-500: #ef4444;
+    --page-color-white: #ffffff;
+}
+
+/* Layout and Sizing */
+.page-min-h-screen {
+    min-height: 100vh;
+}
+
+/* Backgrounds */
+.page-bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+
+.page-from-blue-50 {
+    --tw-gradient-from: var(--page-color-blue-50);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0));
+}
+
+.page-to-indigo-100 {
+    --tw-gradient-to: var(--page-color-indigo-100);
+}
+
+.page-bg-white {
+    background-color: var(--page-color-white);
+}
+
+/* Spacing */
+.page-p-8 {
+    padding: 2rem;
+}
+
+.page-p-4 {
+    padding: 1rem;
+}
+
+.page-mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.page-gap-6 {
+    gap: 1.5rem;
+}
+
+/* Typography */
+.page-text-3xl {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+}
+
+.page-text-xl {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+}
+
+.page-font-bold {
+    font-weight: 700;
+}
+
+.page-font-semibold {
+    font-weight: 600;
+}
+
+.page-text-gray-800 {
+    color: var(--page-color-gray-800);
+}
+
+.page-text-red-500 {
+    color: var(--page-color-red-500);
+}
+
+.page-text-indigo-700 {
+    color: var(--page-color-indigo-700);
+}
+
+.page-text-center {
+    text-align: center;
+}
+
+/* Grid */
+.page-grid {
+    display: grid;
+}
+
+.page-grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+    .page-sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .page-md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Borders */
+.page-rounded-lg {
+    border-radius: 0.5rem;
+}
+
+/* Effects */
+.page-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+

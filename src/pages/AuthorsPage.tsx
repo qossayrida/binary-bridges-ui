@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { apiGetAllAuthors } from '../service/authorService'; // adjust path as needed
 import type {AuthorDTO} from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 
+// Assuming page-styles.css is imported globally or in a parent component
 
 export const AuthorsPage = () => {
     const [authors, setAuthors] = useState<AuthorDTO[]>([]);
@@ -24,16 +25,16 @@ export const AuthorsPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Authors</h1>
+        <div className="page-min-h-screen">
+            <h1 className="page-text-3xl page-font-bold page-text-gray-800 page-mb-6 page-text-center">Authors</h1>
 
-            {loading && <p className="text-center">Loading...</p>}
-            {error && <p className="text-center text-red-500">{error}</p>}
+            {loading && <p className="page-text-center">Loading...</p>}
+            {error && <p className="page-text-center page-text-red-500">{error}</p>}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="page-grid page-grid-cols-1 page-sm:grid-cols-2 page-md:grid-cols-3 page-gap-6">
                 {authors.map((author) => (
-                    <div key={author.uuid} className="bg-white rounded-lg shadow p-4">
-                        <h2 className="text-xl font-semibold text-indigo-700">{author.name}</h2>
+                    <div key={author.uuid} className="page-bg-white page-rounded-lg page-shadow page-p-4">
+                        <h2 className="page-text-xl page-font-semibold page-text-indigo-700">{author.name}</h2>
                         {/* Add more fields as needed */}
                     </div>
                 ))}

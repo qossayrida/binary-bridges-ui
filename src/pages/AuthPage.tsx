@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthForm } from '../components/auth/AuthForm';
 import { useAuth } from '../context/AuthContext';
+import {Button} from "../components/ui";
 
 export const AuthPage: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -42,23 +43,27 @@ export const AuthPage: React.FC = () => {
                 </div>
 
                 <div className="auth-toggle">
-                    <button
+                    <Button
                         onClick={() => setIsLogin(true)}
                         className={isLogin ? 'active' : 'inactive'}
                     >
                         🔐 Login
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={() => setIsLogin(false)}
                         className={!isLogin ? 'active' : 'inactive'}
                     >
                         🆕 Sign Up
-                    </button>
+                    </Button>
+
                 </div>
 
-                <h2 className="text-xl font-semibold text-center mb-6">
-                    {isLogin ? 'Welcome Back!' : 'Join Binary Bridges'}
-                </h2>
+                <div className="auth-header">
+                    <h3>
+                        {isLogin ? 'Welcome Back!' : 'Join Binary Bridges'}
+                    </h3>
+                </div>
+
 
                 <button onClick={handleFacebookLogin} className="auth-facebook">
                     📘 Continue with Facebook

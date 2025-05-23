@@ -41,7 +41,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="form-input"
+                error={error ? ' ' : undefined} // Pass error prop to trigger styling
             />
             <Input
                 type="password"
@@ -49,12 +49,17 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
-                className="form-input"
+                error={error ? ' ' : undefined} // Pass error prop to trigger styling
             />
-            {error && <p>{error}</p>}
-            <Button type="submit">
-                {isLogin ? 'Login' : 'Sign Up'}
-            </Button>
+
+            {error && <p className="ui-input-error-text ui-text-center">{error}</p>}
+
+            {/* Wrapper div to center the button */}
+            <div className="ui-flex ui-justify-center">
+                <Button type="submit">
+                    {isLogin ? 'Login' : 'Sign Up'}
+                </Button>
+            </div>
         </form>
     );
 };

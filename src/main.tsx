@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import './config/axiosConfig';
 import App from './App.tsx'
 
 const cssContext = import.meta.glob('./assets/*.css', { eager: true });
