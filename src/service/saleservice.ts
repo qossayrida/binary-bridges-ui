@@ -43,6 +43,7 @@ export async function apiGetSaleById(id: string) {
 export async function apiGetAllSales() {
     try {
         const response = await saleControllerApi.getAllSales();
+        console.log("Sale data:", response.data);
         return response.data;
     } catch (error) {
         console.error("Error getting all sales:", error);

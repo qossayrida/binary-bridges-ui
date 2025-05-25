@@ -48,7 +48,6 @@ export const DataTablePage = <T,>({
     const [selectedRows, setSelectedRows] = useState<T[]>([]);
     const [sortField, setSortField] = useState<string>('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-    const [tableSize, setTableSize] = useState<'compact' | 'comfortable' | 'spacious'>('comfortable');
 
     // Handle pagination
     const handlePaginationChange = (event: { first: number; rows: number }) => {
@@ -179,24 +178,12 @@ export const DataTablePage = <T,>({
                             )}
                         </div>
 
-                        <div className="table-size-controls">
-                            <label className="size-label">Table Size:</label>
-                            <select
-                                className="size-selector"
-                                value={tableSize}
-                                onChange={(e) => setTableSize(e.target.value as 'compact' | 'comfortable' | 'spacious')}
-                            >
-                                <option value="compact">Compact</option>
-                                <option value="comfortable">Comfortable</option>
-                                <option value="spacious">Spacious</option>
-                            </select>
-                        </div>
                     </div>
 
                     {/* Data Table */}
                     <div className="data-table-container">
                         <div className="table-responsive">
-                            <table className={`data-table size-${tableSize}`}>
+                            <table className={`data-table size-comfortable`}>
                                 <thead>
                                 <tr>
                                     <th className="checkbox-column">

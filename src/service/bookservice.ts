@@ -43,6 +43,7 @@ export async function apiGetBookById(id: string) {
 export async function apiGetAllBooks() {
     try {
         const response = await bookControllerApi.getAllBooks();
+        console.log("Books data:", response.data);
         return response.data;
     } catch (error) {
         console.error("Error getting all books:", error);

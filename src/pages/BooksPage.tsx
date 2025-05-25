@@ -39,7 +39,7 @@ export const BooksPage = () => {
             field: 'price',
             header: 'Price',
             id: 'price',
-            index: 2,
+            index: 1,
             sortable: true,
             resizeable: true,
             reorderable: true,
@@ -55,7 +55,7 @@ export const BooksPage = () => {
             field: 'actions',
             header: 'Actions',
             id: 'actions',
-            index: 6,
+            index: 2,
             sortable: false,
             resizeable: false,
             reorderable: false,
@@ -110,7 +110,7 @@ export const BooksPage = () => {
         // Implement delete logic
     };
 
-    const getUniqueId = (book: BookDTO) => book.uuid || book.isbn || '';
+    const getUniqueId = (book: BookDTO) => book.uuid || '';
 
     return (
         <DataTablePage
