@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
     return (
         <AuthProvider>
-            <Router basename="/binary-bridges-ui">
+            <Router>
                 <Routes>
                     <Route path="/auth" element={<AuthPage />} />
 

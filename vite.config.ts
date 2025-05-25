@@ -1,24 +1,14 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import type { UserConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-const config: UserConfig = {
-  base: '/binary-bridges-ui/',
+export default defineConfig({
+  base: '/',
   plugins: [react()],
-  server: {
-    host: '0.0.0.0',
-    port: Number(process.env.PORT) || 3000,
-    strictPort: true
+  build: {
+    outDir: 'dist'
   },
   preview: {
-    host: '0.0.0.0',
-    port: Number(process.env.PORT) || 3000
-  },
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    emptyOutDir: true
+    port: process.env.PORT ? parseInt(process.env.PORT) : 4173,
+    host: '0.0.0.0'
   }
-};
-
-export default defineConfig(config);
+})
