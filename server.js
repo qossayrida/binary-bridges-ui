@@ -2,7 +2,6 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import fs from 'fs';
-import path from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const isDev = process.env.NODE_ENV !== 'production';
@@ -20,20 +19,23 @@ async function createServer() {
         app.use('*', async (req, res) => {
             try {
                 const url = req.originalUrl;
-                const template = await vite.transformIndexHtml(url, `
+                const template = await vite.transformIndexHtml(
+                    url,
+                    `
           <!DOCTYPE html>
           <html lang="en">
             <head>
               <meta charset="UTF-8" />
               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Binary Bridges UI</title>
+              <title>Vite App</title>
             </head>
             <body>
               <div id="app"></div>
               <script type="module" src="/src/main.js"></script>
             </body>
           </html>
-        `);
+        `
+                );
                 res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
             } catch (e) {
                 vite.ssrFixStacktrace(e);
@@ -45,6 +47,7 @@ async function createServer() {
         const distPath = join(__dirname, 'dist');
         app.use(express.static(distPath));
 
+        // For React Router to handle routes correctly
         app.get('*', (req, res) => {
             res.sendFile(join(distPath, 'index.html'));
         });
