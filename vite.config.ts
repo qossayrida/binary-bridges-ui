@@ -1,4 +1,4 @@
-import {defineConfig, UserConfig} from 'vite'
+import { defineConfig, UserConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
   preview: {
     port: parseInt(process.env.PORT || '4173'),
     host: '0.0.0.0',
-    allowedHosts: 'all'
+    allowedHosts: ['binary-bridges-ui.onrender.com', 'localhost']
   },
   build: {
     rollupOptions: {
