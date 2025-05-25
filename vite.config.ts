@@ -4,11 +4,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/',
   plugins: [react()],
-  build: {
-    outDir: 'dist'
-  },
   preview: {
-    port: process.env.PORT ? parseInt(process.env.PORT) : 4173,
+    port: parseInt(process.env.PORT || '4173'),
     host: '0.0.0.0'
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   }
 })

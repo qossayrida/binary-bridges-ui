@@ -7,9 +7,11 @@
     "dev": "vite --mode development",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "npm pack",
-    "start": "vite preview --port 4173 --host 0.0.0.0"
+    "preview": "vite preview --port $PORT --host 0.0.0.0",
+    "start": "vite preview --port $PORT --host 0.0.0.0",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build",
+    "postinstall": "npm pack"
   },
   "dependencies": {
     "@binary-bridges/binary-bridges-axios-client-api": "^1.0.0",
