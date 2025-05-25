@@ -1,9 +1,129 @@
+import React, {useEffect, useState} from 'react';
+import { apiGetAllBooks } from '../service/bookservice.ts';
+import type { BookDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
+import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
+
 
 export const BooksPage = () => {
-    return (
-        <div >
-            <h1 className="page-text-3xl page-font-bold page-text-gray-800 page-mb-6 page-text-center">Books Page</h1>
+    const [books, setBooks] = useState<BookDTO[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-        </div>
+    // Define books columns configuration
+    const booksColumns: ColumnConfig<BookDTO>[] = [
+        {
+            field: 'title',
+            header: 'Book Title',
+            id: 'title',
+            index: 0,
+            sortable: true,
+            resizeable: true,
+            reorderable: true,
+            checked: true,
+            style: { width: '25rem' },
+            body: (rowData: BookDTO) => (
+                <div className="entity-name-cell">
+                    <div className="entity-avatar">
+                        📖
+                    </div>
+                    <div className="entity-info">
+                        <span className="entity-name">{rowData.title}</span>
+                        {rowData.uuid && (
+                            <code className="entity-id">ID: {rowData.uuid.slice(0, 8)}...</code>
+                        )}
+                    </div>
+                </div>
+            )
+        },
+        {
+            field: 'price',
+            header: 'Price',
+            id: 'price',
+            index: 2,
+            sortable: true,
+            resizeable: true,
+            reorderable: true,
+            checked: true,
+            style: { width: '8rem' },
+            body: (rowData: BookDTO) => (
+                <span className="price-display">
+                    {rowData.price ? `$${rowData.price.toFixed(2)}` : 'N/A'}
+                </span>
+            )
+        },
+        {
+            field: 'actions',
+            header: 'Actions',
+            id: 'actions',
+            index: 6,
+            sortable: false,
+            resizeable: false,
+            reorderable: false,
+            checked: true,
+            style: { width: '8rem' },
+            body: (rowData: BookDTO) => (
+                <div className="entity-actions">
+                    <button className="action-btn view" title="View Book">
+                        👁️
+                    </button>
+                    <button className="action-btn edit" title="Edit Book">
+                        ✏️
+                    </button>
+                    <button className="action-btn delete" title="Delete Book">
+                        🗑️
+                    </button>
+                </div>
+            )
+        }
+    ];
+
+    const fetchBooks = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await apiGetAllBooks();
+            setBooks(response.data || []);
+        } catch (err) {
+            setError("Failed to load books.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchBooks();
+    }, []);
+
+    // Handler functions
+    const handleAdd = () => {
+        console.log('Add new book');
+        // Implement add book logic
+    };
+
+    const handleExport = () => {
+        console.log('Export books');
+        // Implement export logic
+    };
+
+    const handleDeleteSelected = (selected: BookDTO[]) => {
+        console.log('Delete selected books:', selected);
+        // Implement delete logic
+    };
+
+    const getUniqueId = (book: BookDTO) => book.uuid || book.isbn || '';
+
+    return (
+        <DataTablePage
+            title="Books Management"
+            data={books}
+            columns={booksColumns}
+            loading={loading}
+            error={error}
+            onRefresh={fetchBooks}
+            getUniqueId={getUniqueId}
+            onAdd={handleAdd}
+            onExport={handleExport}
+            onDeleteSelected={handleDeleteSelected}
+        />
     );
-}
+};

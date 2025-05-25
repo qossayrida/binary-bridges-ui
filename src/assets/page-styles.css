@@ -57,16 +57,14 @@ body {
 
 /* Page Container (Removed - Assuming this is handled by sidebar layout) */
 /* .data-page, .page-container removed */
-
-/* Header Section (Inside .sidebar-content-card or similar) */
 .page-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: var(--surface);
-    padding: 1.5rem 2rem; /* Adjusted padding */
+    padding: 1rem 1.5rem; /* Reduced padding */
     position: relative;
     overflow: hidden;
-    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* Rounded top corners */
-    margin: -2rem -2rem 2rem -2rem; /* Extend to edges of the card padding */
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem; /* Slightly reduced margin */
 }
 
 .page-header::before {
@@ -78,59 +76,59 @@ body {
     pointer-events: none;
 }
 
-.header-content-wrapper { /* Renamed to avoid conflict with sidebar header */
+.header-content-wrapper {
     position: relative;
     z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1rem; /* Reduced gap */
 }
 
 .page-title {
-    font-size: 1.75rem; /* Adjusted size */
-    font-weight: 700; /* Bold but not extra bold */
+    font-size: 1.5rem; /* Slightly smaller */
+    font-weight: 700;
     margin: 0;
     color: var(--surface);
     letter-spacing: -0.01em;
-    /* Removed gradient text for better readability */
 }
 
 .page-stats {
     display: flex;
-    gap: 1.5rem; /* Reduced gap */
+    gap: 1rem; /* Reduced gap */
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap;
 }
 
 .stat-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0.6rem 1rem; /* Adjusted padding */
-    background: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+    gap: 0.2rem; /* Slightly reduced gap */
+    padding: 0.5rem 0.8rem; /* Smaller padding */
+    background: rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    min-width: 100px; /* Minimum width */
+    min-width: 90px; /* Slightly smaller */
     text-align: center;
 }
 
 .stat-number {
-    font-size: 1.5rem; /* Adjusted size */
+    font-size: 1.25rem; /* Smaller */
     font-weight: 600;
-    color: var(--surface); /* White number */
+    color: var(--surface);
 }
 
 .stat-label {
-    font-size: 0.75rem; /* Smaller label */
+    font-size: 0.7rem;
     opacity: 0.85;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
 }
+
 
 /* Table Container */
 .table-wrapper {

@@ -72,16 +72,19 @@ export const PageLoader: React.FC<{ text?: string }> = ({
                                                             text = 'Loading...'
                                                         }) => (
     <div className="ui-page-loader">
-        <LoadingSpinner size="xl" text={text} centered />
+        <LoadingSpinner size="xl" text={text} centered/>
     </div>
 );
 
 // Section-level loading component
 export const SectionLoader: React.FC<{ text?: string; className?: string }> = ({
                                                                                    text = 'Loading...',
-                                                                                   className = 'ui-py-12'
                                                                                }) => (
-    <div className={`ui-section-loader ${className}`}>
-        <LoadingSpinner size="lg" text={text} centered />
+    <div className="data-page loading">
+        <div className="page-container">
+            <div className="loading-container">
+                <LoadingSpinner size="lg" text={text} centered/>
+            </div>
+        </div>
     </div>
 );
