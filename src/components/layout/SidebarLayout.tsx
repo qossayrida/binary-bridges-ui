@@ -11,7 +11,24 @@ export const SidebarLayout: React.FC = () => {
     const { logout } = useAuth();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    // Check if screen is mobile size
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+            // Close mobile menu when switching to desktop
+            if (window.innerWidth > 768) {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Close dropdown if clicked outside
     useEffect(() => {
@@ -24,14 +41,41 @@ export const SidebarLayout: React.FC = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [location.pathname]);
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobile && mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMobile, mobileMenuOpen]);
+
     const handleLogout = () => {
         logout();
         navigate('/auth');
         setDropdownOpen(false);
+        setMobileMenuOpen(false);
     };
 
     const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
+        if (isMobile) {
+            setMobileMenuOpen(!mobileMenuOpen);
+        } else {
+            setSidebarCollapsed(!sidebarCollapsed);
+        }
+    };
+
+    const closeMobileMenu = () => {
+        setMobileMenuOpen(false);
     };
 
     const getCurrentPageTitle = () => {
@@ -39,19 +83,46 @@ export const SidebarLayout: React.FC = () => {
         return currentRoute ? currentRoute.label : 'Dashboard';
     };
 
+    const handleNavItemClick = (path: string) => {
+        navigate(path);
+        if (isMobile) {
+            setMobileMenuOpen(false);
+        }
+    };
+
     return (
         <div className="sidebar-layout-container">
+            {/* Mobile Menu Button */}
+            {isMobile && (
+                <button
+                    className="sidebar-mobile-menu-btn"
+                    onClick={toggleSidebar}
+                    aria-label="Toggle menu"
+                >
+                    {mobileMenuOpen ? '✕' : '☰'}
+                </button>
+            )}
+
+            {/* Mobile Overlay */}
+            {isMobile && (
+                <div
+                    className={`sidebar-overlay ${mobileMenuOpen ? 'active' : ''}`}
+                    onClick={closeMobileMenu}
+                />
+            )}
+
             {/* Sidebar */}
-            <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+            <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile && mobileMenuOpen ? 'mobile-open' : ''}`}>
                 {/* Sidebar Header */}
                 <div className="sidebar-header">
                     <span className="logo-icon">🎓</span>
-                    {!sidebarCollapsed && <span> Binary Bridges</span>}
+                    {(!sidebarCollapsed || isMobile) && <span> Binary Bridges</span>}
                     <button
                         className="sidebar-toggle"
                         onClick={toggleSidebar}
+                        aria-label={isMobile ? 'Close menu' : (sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar')}
                     >
-                        {sidebarCollapsed ? '→' : '←'}
+                        {isMobile ? '✕' : (sidebarCollapsed ? '→' : '←')}
                     </button>
                 </div>
 
@@ -62,12 +133,12 @@ export const SidebarLayout: React.FC = () => {
                         return (
                             <button
                                 key={item.path}
-                                onClick={() => navigate(item.path)}
+                                onClick={() => handleNavItemClick(item.path)}
                                 className={`sidebar-nav-item ${isActive ? 'active' : ''}`}
-                                title={sidebarCollapsed ? item.label : undefined}
+                                title={(!isMobile && sidebarCollapsed) ? item.label : undefined}
                             >
                                 <span className="sidebar-nav-icon">{item.icon}</span>
-                                {!sidebarCollapsed && (
+                                {(!sidebarCollapsed || isMobile) && (
                                     <>
                                         <span className="sidebar-nav-label">{item.label}</span>
                                         {item.badge && (
@@ -80,7 +151,7 @@ export const SidebarLayout: React.FC = () => {
                     })}
                 </nav>
 
-                {!sidebarCollapsed && <Footer />}
+                {(!sidebarCollapsed || isMobile) && <Footer />}
             </aside>
 
             {/* Main Content Area */}
@@ -104,7 +175,7 @@ export const SidebarLayout: React.FC = () => {
                             size="sm"
                             icon="⚙️"
                         >
-                            Settings
+                            {isMobile ? '' : 'Settings'}
                         </Button>
 
                         {dropdownOpen && (
