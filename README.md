@@ -1,12 +1,23 @@
 # Binary Bridges UI & SDK Documentation
 
 ## Table of Contents
-1. [UI Application Setup](#ui-application-setup)
-2. [TypeScript Axios Client SDK](#typescript-axios-client-sdk)
-3. [Deployment](#deployment)
-4. [API Integration](#api-integration)
+1. [Live Environments](#live-environments)
+2. [UI Application Setup](#ui-application-setup)
+3. [TypeScript Axios Client SDK](#typescript-axios-client-sdk)
+4. [Deployment](#deployment)
+5. [API Integration](#api-integration)
 
 ---
+
+## Live Environments
+### Web Application
+🌐 **UI Application**: [https://binary-bridges-ui.onrender.com/](https://binary-bridges-ui.onrender.com/)
+
+### Production API
+🔗 **API Endpoint**: [https://binary-bridges-api.onrender.com/](https://binary-bridges-api.onrender.com/)  
+📚 **API Documentation**: [Swagger UI](https://binary-bridges-api.onrender.com/swagger-ui/index.html)  
+⚙️ **OpenAPI Spec**: [v3 API Docs](https://binary-bridges-api.onrender.com/v3/api-docs)
+
 
 ## UI Application Setup
 
@@ -36,7 +47,7 @@ Create a `.env` file in the root directory:
 VITE_API_BASE_URL=https://binary-bridges-api.onrender.com
 ```
 
----
+
 
 ## TypeScript Axios Client SDK
 
@@ -75,8 +86,6 @@ graph TD
     D --> E[Publish to npm]
 ```
 
----
-
 ## Deployment
 
 ### Render.com Deployment
@@ -104,7 +113,7 @@ git commit -m "Update for deployment"
 git push origin main
 ```
 
----
+
 
 ## API Integration
 
