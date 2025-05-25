@@ -80,7 +80,6 @@ export const SidebarLayout: React.FC = () => {
                     })}
                 </nav>
 
-                {/* Footer */}
                 {!sidebarCollapsed && <Footer />}
             </aside>
 
