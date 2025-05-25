@@ -8,10 +8,11 @@
     "dev": "vite --mode development",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vite preview --port $PORT --host 0.0.0.0",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
-    "postinstall": "npm pack"
+    "postinstall": "npm pack",
+    "start": "node server.js"
   },
   "dependencies": {
     "@binary-bridges/binary-bridges-axios-client-api": "^1.0.0",

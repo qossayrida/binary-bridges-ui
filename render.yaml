@@ -3,8 +3,8 @@ services:
     name: binary-bridges-ui
     env: node
     buildCommand: npm install && npm run build
-    startCommand: npm run preview
+    startCommand: node server.js  # Remove vite preview since your server.js handles it
     healthCheckPath: /
     envVars:
       - key: PORT
-        value: 10000
+        value: 10000  # Keep this consistent
