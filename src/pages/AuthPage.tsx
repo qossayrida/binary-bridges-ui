@@ -31,7 +31,8 @@ export const AuthPage: React.FC = () => {
     };
 
     const handleFacebookLogin = () => {
-        window.location.href = 'https://binary-bridges-api.onrender.com/login/oauth2/code/facebook';
+        console.log('Redirecting to Facebook OAuth... ', import.meta.env.VITE_API_BASE_URL);
+        window.location.href = import.meta.env.VITE_API_BASE_URL + 'oauth2/authorization/facebook';
     };
 
     return (
