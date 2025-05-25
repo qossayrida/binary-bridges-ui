@@ -6,13 +6,7 @@ export default defineConfig({
   plugins: [react()],
   preview: {
     port: parseInt(process.env.PORT || '4173'),
-    host: '0.0.0.0'
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
-      }
-    }
+    host: '0.0.0.0',
+    allowedHosts: 'all'
   }
 })
