@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { apiGetAllAuthors } from '../service/authorService'; // adjust path as needed
+import { apiGetAllAuthors } from '../service/authorservice'; // adjust path as needed
 import type {AuthorDTO} from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 
 // Assuming page-styles.css is imported globally or in a parent component
