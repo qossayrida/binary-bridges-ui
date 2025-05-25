@@ -31,7 +31,7 @@ export const AuthPage: React.FC = () => {
     };
 
     const handleFacebookLogin = () => {
-        window.location.href = 'https://binary-bridges-api.onrender.com/oauth2/authorization/facebook';
+        window.location.href = 'https://binary-bridges-api.onrender.com/login/oauth2/code/facebook';
     };
 
     return (
