@@ -3,8 +3,6 @@
 ## Table of Contents
 1. [UI Application Setup](#ui-application-setup)
 2. [TypeScript Axios Client SDK](#typescript-axios-client-sdk)
-    - [Development](#development)
-    - [Publishing](#publishing)
 3. [Deployment](#deployment)
 4. [API Integration](#api-integration)
 
@@ -42,7 +40,6 @@ VITE_API_BASE_URL=https://binary-bridges-api.onrender.com
 
 ## TypeScript Axios Client SDK
 
-### Development
 
 1. Navigate to the SDK directory:
 ```bash
