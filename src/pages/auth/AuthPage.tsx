@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Lock, UserPlus } from 'lucide-react';
 import { AuthForm } from './AuthForm.tsx';
 import { useAuth } from '../../context/AuthContext.tsx';
 import { Button } from '../../components/ui';
@@ -63,22 +64,26 @@ export const AuthPage: React.FC = () => {
         <div className="auth-page">
             <div className="auth-card">
                 <div className="auth-header">
-                    <h1>📚 Binary Bridges</h1>
+                    <h1 className="flex items-center gap-2">
+                        Binary Bridges
+                    </h1>
                     <p>Your comprehensive book management system</p>
                 </div>
 
                 <div className="auth-toggle">
                     <Button
+                        icon={<Lock size={16} />}
                         onClick={() => setIsLogin(true)}
-                        className={isLogin ? 'active' : 'inactive'}
+                        className={`flex items-center gap-2 ${isLogin ? 'active' : 'inactive'}`}
                     >
-                        🔐 Login
+                        Login
                     </Button>
                     <Button
+                        icon={<UserPlus size={16} />}
                         onClick={() => setIsLogin(false)}
-                        className={!isLogin ? 'active' : 'inactive'}
+                        className={`flex items-center gap-2 ${!isLogin ? 'active' : 'inactive'}`}
                     >
-                        🆕 Sign Up
+                         Sign Up
                     </Button>
                 </div>
 
@@ -86,8 +91,9 @@ export const AuthPage: React.FC = () => {
                     <h3>{isLogin ? 'Welcome Back!' : 'Join Binary Bridges'}</h3>
                 </div>
 
-                <button onClick={handleFacebookLogin} className="auth-facebook">
-                    📘 Continue with Facebook
+                <button
+                    onClick={handleFacebookLogin} className="auth-facebook flex items-center justify-center gap-2">
+                    Continue with Facebook
                 </button>
 
                 <div className="auth-divider">
