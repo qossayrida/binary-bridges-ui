@@ -1,13 +1,19 @@
 import type { JSX } from 'react';
-import { HomePage } from '../pages/HomePage.tsx';
-import { AuthorsPage } from '../pages/AuthorsPage.tsx';
-import { BooksPage } from '../pages/BooksPage.tsx';
-import { SalesPage } from '../pages/SalesPage.tsx';
+import { FaHome, FaUserEdit, FaBook, FaDollarSign } from 'react-icons/fa';
+import React, {lazy} from "react";
+
+const HomePage = lazy(() => import('../pages/HomePage.tsx'));
+const AuthorsPage = lazy(() => import('../pages/AuthorsPage.tsx'));
+const BooksPage = lazy(() => import('../pages/BooksPage.tsx'));
+const SalesPage = lazy(() => import('../pages/SalesPage.tsx'));
+
+
+const AuthorsAddPage = lazy(() => import('../pages/AuthorAddPage.tsx'));
 
 interface AppRoute {
     path: string;
     label: string;
-    icon: string;
+    icon?: JSX.Element;
     element: JSX.Element;
     badge?: string;
 }
@@ -15,26 +21,31 @@ interface AppRoute {
 export const appRoutes: AppRoute[] = [
     {
         label: 'Home',
-        icon: '🏠',
+        icon: <FaHome />,
         path: '/home',
-        element: <HomePage />
+        element: <HomePage />,
     },
     {
         label: 'Authors',
-        icon: '✍️',
+        icon: <FaUserEdit />,
         path: '/author',
-        element: <AuthorsPage />
+        element: <AuthorsPage />,
+    },
+    {
+        label: 'Add new author',
+        path: '/author/add',
+        element: <AuthorsAddPage />,
     },
     {
         label: 'Books',
-        icon: '📖',
+        icon: <FaBook />,
         path: '/book',
-        element: <BooksPage />
+        element: <BooksPage />,
     },
     {
         label: 'Sales',
-        icon: '💰',
+        icon: <FaDollarSign />,
         path: '/sale',
-        element: <SalesPage />
+        element: <SalesPage />,
     }
 ];

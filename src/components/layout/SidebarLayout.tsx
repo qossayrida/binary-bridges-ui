@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { appRoutes } from '../../config/routesConfig.tsx';
 import { useAuth } from '../../context/AuthContext';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import { HiAcademicCap } from 'react-icons/hi';
 import { Button } from '../ui';
 import Footer from './Footer';
 
@@ -115,15 +117,19 @@ export const SidebarLayout: React.FC = () => {
             <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile && mobileMenuOpen ? 'mobile-open' : ''}`}>
                 {/* Sidebar Header */}
                 <div className="sidebar-header">
-                    <span className="logo-icon">🎓</span>
+                    <span className="logo-icon">
+                        <HiAcademicCap />
+                    </span>
                     {(!sidebarCollapsed || isMobile) && <span> Binary Bridges</span>}
-                    <button
-                        className="sidebar-toggle"
-                        onClick={toggleSidebar}
-                        aria-label={isMobile ? 'Close menu' : (sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar')}
-                    >
-                        {isMobile ? '✕' : (sidebarCollapsed ? '→' : '←')}
-                    </button>
+                    {!isMobile && (
+                        <button
+                            className="sidebar-toggle"
+                            onClick={toggleSidebar}
+                            aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+                        >
+                            {sidebarCollapsed ? '→' : '←'}
+                        </button>
+                    )}
                 </div>
 
                 {/* Navigation */}
@@ -159,7 +165,9 @@ export const SidebarLayout: React.FC = () => {
                 {/* Header */}
                 <header className="sidebar-main-header sidebar-fade-in">
                     <div className="sidebar-breadcrumb">
-                        <span className="sidebar-breadcrumb-icon">📍</span>
+                        <span className="sidebar-breadcrumb-icon">
+                            <FaMapMarkerAlt />
+                        </span>
                         <span>Current Page:</span>
                         <span className="sidebar-breadcrumb-path">{getCurrentPageTitle()}</span>
                         <span className="sidebar-breadcrumb-pathname">
@@ -175,7 +183,7 @@ export const SidebarLayout: React.FC = () => {
                             size="sm"
                             icon="⚙️"
                         >
-                            {isMobile ? '' : 'Settings'}
+                            {!isMobile && 'Settings'}
                         </Button>
 
                         {dropdownOpen && (

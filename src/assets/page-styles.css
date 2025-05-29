@@ -3,21 +3,28 @@
     /* Consistent Font Stack */
     --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    /* Primary Color Palette (Keeping original blue theme for content) */
-    --primary-color: #3b82f6; /* Blue-500 */
-    --primary-dark: #2563eb; /* Blue-600 */
-    --primary-light: #93c5fd; /* Blue-300 */
-    --primary-lighter: #dbeafe; /* Blue-100 */
+    /* Unified Color Palette (Teal/Cyan Theme) */
+    --color-light: #F1FCFE;
+    --color-accent-light: #C8F2FC;
+    --color-primary: #00A7C3;
+    --color-primary-dark: #007187;
+    --color-dark: #04333A;
+
+    /* Primary Color Palette (Updated to match sidebar theme) */
+    --primary-color: #00A7C3; /* Teal-500 */
+    --primary-dark: #007187; /* Teal-600 */
+    --primary-light: #C8F2FC; /* Teal-300 */
+    --primary-lighter: #F1FCFE; /* Teal-100 */
 
     /* Accent & Neutrals */
-    --accent-light: #f0f9ff; /* Very light blue */
+    --accent-light: #F1FCFE; /* Very light teal */
     --background-light: #f8fafc; /* Cool Gray 50 */
     --surface: #ffffff;
     --border-light: #e5e7eb; /* Cool Gray 200 */
     --border-medium: #d1d5db; /* Cool Gray 300 */
 
     /* Text Colors */
-    --text-primary: #1f2937; /* Cool Gray 800 */
+    --text-primary: #04333A; /* Dark teal (matching --color-dark) */
     --text-secondary: #4b5563; /* Cool Gray 600 */
     --text-muted: #9ca3af; /* Cool Gray 400 */
 
@@ -28,8 +35,8 @@
     --warning-dark: #d97706; /* Amber 600 */
     --danger: #ef4444; /* Red 500 */
     --danger-dark: #dc2626; /* Red 600 */
-    --info: #38bdf8; /* Sky 400 */
-    --info-dark: #0ea5e9; /* Sky 500 */
+    --info: #00A7C3; /* Teal 400 - matching primary */
+    --info-dark: #007187; /* Teal 500 - matching primary-dark */
 
     /* Shadows (Slightly softer) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
@@ -58,7 +65,7 @@ body {
 /* Page Container (Removed - Assuming this is handled by sidebar layout) */
 /* .data-page, .page-container removed */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     color: var(--surface);
     padding: 1rem 1.5rem; /* Reduced padding */
     position: relative;
@@ -183,8 +190,8 @@ body {
 
 .size-selector:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 167, 195, 0.2);
 }
 
 /* Control Buttons */
@@ -224,14 +231,14 @@ body {
 }
 
 .control-btn.primary {
-    background: var(--primary-color);
+    background: var(--color-primary);
     color: var(--surface);
-    border-color: var(--primary-color);
+    border-color: var(--color-primary);
 }
 
 .control-btn.primary:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
 }
 
 .control-btn.secondary {
@@ -297,11 +304,11 @@ body {
     border-radius: 4px;
 }
 .table-responsive::-webkit-scrollbar-thumb {
-    background: #cccccc;
+    background: var(--color-accent-light);
     border-radius: 4px;
 }
 .table-responsive::-webkit-scrollbar-thumb:hover {
-    background: #aaaaaa;
+    background: var(--color-primary);
 }
 
 
@@ -376,7 +383,7 @@ body {
 
 .sort-indicator.active {
     opacity: 1;
-    color: var(--primary-color);
+    color: var(--color-primary);
 }
 
 .checkbox-column {
@@ -396,7 +403,7 @@ body {
 }
 
 .table-row:hover {
-    background: var(--accent-light);
+    background: var(--color-light);
 }
 
 /* No alternating row color for cleaner look */
@@ -421,11 +428,11 @@ body {
     width: 2.25rem; /* Slightly smaller */
     height: 2.25rem;
     border-radius: 50%;
-    background: var(--primary-lighter);
+    background: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-dark);
+    color: var(--color-primary-dark);
     font-weight: 600;
     font-size: 0.9rem;
     flex-shrink: 0;
@@ -497,8 +504,8 @@ body {
 }
 
 .action-btn.view:hover {
-    color: var(--info-dark);
-    background-color: #ecfafd; /* Light info background */
+    color: var(--color-primary-dark);
+    background-color: var(--color-light); /* Light teal background */
 }
 
 .action-btn.edit:hover {
@@ -515,7 +522,7 @@ body {
 .table-checkbox {
     width: 1.1rem;
     height: 1.1rem;
-    accent-color: var(--primary-color);
+    accent-color: var(--color-primary);
     cursor: pointer;
     border-radius: var(--border-radius-xs);
     transition: var(--transition-fast);
@@ -580,10 +587,10 @@ body {
 
 .page-info {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-primary-dark);
     padding: 0.5rem 0.8rem;
-    background: var(--primary-lighter);
-    border: 1px solid var(--primary-light);
+    background: var(--color-light);
+    border: 1px solid var(--color-accent-light);
     border-radius: var(--border-radius-sm);
     font-size: 0.8rem;
     box-shadow: none;
@@ -603,8 +610,8 @@ body {
 .loading-spinner {
     width: 2.5rem;
     height: 2.5rem;
-    border: 3px solid var(--primary-lighter);
-    border-top: 3px solid var(--primary-color);
+    border: 3px solid var(--color-light);
+    border-top: 3px solid var(--color-primary);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin-bottom: 1rem;
@@ -861,4 +868,3 @@ body {
         font-size: 0.7rem;
     }
 }
-

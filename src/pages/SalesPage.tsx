@@ -130,3 +130,5 @@ export const SalesPage = () => {
         />
     );
 };
+
+export default SalesPage;

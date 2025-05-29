@@ -127,3 +127,5 @@ export const BooksPage = () => {
         />
     );
 };
+
+export default BooksPage;

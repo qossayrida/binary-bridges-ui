@@ -2,11 +2,13 @@ import React, {JSX, useEffect, useState} from 'react';
 import { apiGetAllAuthors } from '../service/authorservice';
 import type { AuthorDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
+import {useNavigate} from "react-router-dom";
 
 export const AuthorsPage = () => {
     const [authors, setAuthors] = useState<AuthorDTO[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     // Define authors columns configuration
     const authorsColumns: ColumnConfig<AuthorDTO>[] = [
@@ -96,7 +98,7 @@ export const AuthorsPage = () => {
     // Handler functions
     const handleAdd = () => {
         console.log('Add new author');
-        // Implement add author logic
+        navigate('/author/add'); // Navigate to the add author page
     };
 
     const handleExport = () => {
@@ -126,3 +128,5 @@ export const AuthorsPage = () => {
         />
     );
 };
+
+export default AuthorsPage;
