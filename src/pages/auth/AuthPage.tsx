@@ -2,7 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthForm } from './AuthForm.tsx';
 import { useAuth } from '../../context/AuthContext.tsx';
-import {Button} from "../../components/ui";
+import { Button } from '../../components/ui';
+
+interface User {
+    imageUrl: string;
+    uuid: string;
+    email: string;
+    username: string;
+}
+
+interface AuthResponse {
+    token: string;
+    user: User;
+    message?: string;
+}
 
 export const AuthPage: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -12,27 +25,38 @@ export const AuthPage: React.FC = () => {
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
-        const token = urlParams.get('token');
         const error = urlParams.get('error');
-
-        if (token) {
-            login(token);
-            navigate('/home');
-        }
 
         if (error === 'oauth2_error') {
             window.history.replaceState({}, document.title, location.pathname);
         }
-    }, [location, navigate, login]);
+    }, [location]);
 
-    const handleAuthSuccess = (token: string) => {
-        login(token);
+    const handleAuthSuccess = (response: AuthResponse) => {
+        login(response.token, response.user);
         navigate('/home');
     };
 
     const handleFacebookLogin = () => {
-        console.log('Redirecting to Facebook OAuth... ', import.meta.env.VITE_API_BASE_URL);
-        window.location.href = import.meta.env.VITE_API_BASE_URL + 'oauth2/authorization/facebook';
+        const popup = window.open(
+            `${import.meta.env.VITE_API_BASE_URL}oauth2/authorization/facebook`,
+            '_blank',
+            'width=600,height=700'
+        );
+
+        const messageListener = (event: MessageEvent) => {
+            // Optionally validate event.origin here
+            if (event.data?.token && event.data?.user) {
+                login(event.data.token, event.data.user);
+                navigate('/home');
+            } else {
+                console.warn('Invalid or missing data from OAuth popup');
+            }
+
+            window.removeEventListener('message', messageListener);
+        };
+
+        window.addEventListener('message', messageListener);
     };
 
     return (
@@ -56,15 +80,11 @@ export const AuthPage: React.FC = () => {
                     >
                         🆕 Sign Up
                     </Button>
-
                 </div>
 
                 <div className="auth-header">
-                    <h3>
-                        {isLogin ? 'Welcome Back!' : 'Join Binary Bridges'}
-                    </h3>
+                    <h3>{isLogin ? 'Welcome Back!' : 'Join Binary Bridges'}</h3>
                 </div>
-
 
                 <button onClick={handleFacebookLogin} className="auth-facebook">
                     📘 Continue with Facebook
@@ -83,4 +103,3 @@ export const AuthPage: React.FC = () => {
         </div>
     );
 };
-

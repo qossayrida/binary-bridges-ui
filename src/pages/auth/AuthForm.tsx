@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import { apiLogin, apiSignup } from '../../service/authservice.ts';
-import {Input,Button} from "../../components/ui";
+import { Input, Button } from "../../components/ui";
 import type { LoginRequest, SignupRequest } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 
+// Define the User interface matching AuthContext
+interface User {
+    imageUrl: string;
+    uuid: string;
+    email: string;
+    username: string;
+}
+
+// Define the expected response structure from API calls
+interface AuthResponse {
+    token: string;
+    user: User;
+    message?: string; // Optional message field
+}
 
 interface AuthFormProps {
     isLogin: boolean;
-    onSuccess: (token: string) => void;
+    onSuccess: (response: AuthResponse) => void; // Update onSuccess signature
     onToggleMode: () => void;
 }
 
@@ -19,17 +33,20 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
         e.preventDefault();
         setError(null);
         try {
+            let res: AuthResponse;
             if (isLogin) {
                 const loginRequest: LoginRequest = { username: email, password };
-                const res = await apiLogin(loginRequest);
-                onSuccess(res.token); // assuming API returns { token }
+                // Assuming apiLogin returns { token: string, user: User, message?: string }
+                res = await apiLogin(loginRequest);
             } else {
                 const signupRequest: SignupRequest = { username: email, password };
-                const res = await apiSignup(signupRequest);
-                onSuccess(res.token); // assuming API returns { token }
+                // Assuming apiSignup returns { token: string, user: User, message?: string }
+                res = await apiSignup(signupRequest);
             }
+            onSuccess(res); // Pass the full response object
         } catch (err) {
             setError('Authentication failed');
+            console.error("Auth error:", err); // Log error for debugging
         }
     };
 
@@ -63,3 +80,4 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
         </form>
     );
 };
+
