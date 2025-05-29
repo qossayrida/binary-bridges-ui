@@ -2,6 +2,7 @@ import React, {JSX, useEffect, useState} from 'react';
 import { apiGetAllAuthors } from '../service/authorservice';
 import type { AuthorDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
+import { RowActions } from '../components/ui/RowActions'; // adjust the path as needed
 import {useNavigate} from "react-router-dom";
 
 export const AuthorsPage = () => {
@@ -63,19 +64,15 @@ export const AuthorsPage = () => {
             checked: true,
             style: { width: '8rem' },
             body: (rowData: AuthorDTO) => (
-                <div className="entity-actions">
-                    <button className="action-btn view" title="View Author">
-                        👁️
-                    </button>
-                    <button className="action-btn edit" title="Edit Author">
-                        ✏️
-                    </button>
-                    <button className="action-btn delete" title="Delete Author">
-                        🗑️
-                    </button>
-                </div>
+                <RowActions
+                    row={rowData}
+                    onView={(author) => console.log('View', author)}
+                    onEdit={(author) => console.log('Edit', author)}
+                    onDelete={(author) => console.log('Delete', author)}
+                />
             )
         }
+
     ];
 
     const fetchAuthors = async () => {
