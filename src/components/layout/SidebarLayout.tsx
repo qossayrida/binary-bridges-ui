@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { appRoutes } from '../../config/routesConfig.tsx';
-import { useAuth } from '../../context/AuthContext';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import { HiAcademicCap } from 'react-icons/hi';
-import { Button } from '../ui';
+import React, {useState, useRef, useEffect} from 'react';
+import {useLocation, useNavigate, Outlet} from 'react-router-dom';
+import {appRoutes} from '../../config/routesConfig.tsx';
+import {useAuth} from '../../context/AuthContext';
+import {FaMapMarkerAlt} from 'react-icons/fa';
+import {HiAcademicCap} from 'react-icons/hi';
+import {Button} from '../ui';
 import Footer from './Footer';
+import {FiUser, FiBell, FiSettings, FiLogOut} from 'react-icons/fi';
 
 export const SidebarLayout: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { logout } = useAuth();
+    const {logout} = useAuth();
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,6 +40,7 @@ export const SidebarLayout: React.FC = () => {
                 setDropdownOpen(false);
             }
         }
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -114,11 +116,12 @@ export const SidebarLayout: React.FC = () => {
             )}
 
             {/* Sidebar */}
-            <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile && mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <aside
+                className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile && mobileMenuOpen ? 'mobile-open' : ''}`}>
                 {/* Sidebar Header */}
                 <div className="sidebar-header">
                     <span className="logo-icon">
-                        <HiAcademicCap />
+                        <HiAcademicCap/>
                     </span>
                     {(!sidebarCollapsed || isMobile) && <span> Binary Bridges</span>}
                     {!isMobile && (
@@ -157,7 +160,7 @@ export const SidebarLayout: React.FC = () => {
                     })}
                 </nav>
 
-                {(!sidebarCollapsed || isMobile) && <Footer />}
+                {(!sidebarCollapsed || isMobile) && <Footer/>}
             </aside>
 
             {/* Main Content Area */}
@@ -166,7 +169,7 @@ export const SidebarLayout: React.FC = () => {
                 <header className="sidebar-main-header sidebar-fade-in">
                     <div className="sidebar-breadcrumb">
                         <span className="sidebar-breadcrumb-icon">
-                            <FaMapMarkerAlt />
+                            <FaMapMarkerAlt/>
                         </span>
                         <span>Current Page:</span>
                         <span className="sidebar-breadcrumb-path">{getCurrentPageTitle()}</span>
@@ -181,34 +184,37 @@ export const SidebarLayout: React.FC = () => {
                             onClick={() => setDropdownOpen(!dropdownOpen)}
                             variant="primary"
                             size="sm"
-                            icon="⚙️"
+                            icon={<FiSettings/>}
                         >
+
                             {!isMobile && 'Settings'}
                         </Button>
 
                         {dropdownOpen && (
+
                             <div className="sidebar-dropdown-menu sidebar-fade-in">
                                 <button className="sidebar-dropdown-item">
-                                    <span>👤</span>
+                                    <FiUser style={{marginRight: '8px'}}/>
                                     <span>Profile</span>
                                 </button>
                                 <button className="sidebar-dropdown-item">
-                                    <span>🔔</span>
+                                    <FiBell style={{marginRight: '8px'}}/>
                                     <span>Notifications</span>
                                 </button>
                                 <button className="sidebar-dropdown-item">
-                                    <span>🎨</span>
+                                    <FiSettings style={{marginRight: '8px'}}/>
                                     <span>Preferences</span>
                                 </button>
-                                <hr className="sidebar-dropdown-divider" />
+                                <hr className="sidebar-dropdown-divider"/>
                                 <button
                                     className="sidebar-dropdown-item danger"
                                     onClick={handleLogout}
                                 >
-                                    <span>🚪</span>
+                                    <FiLogOut style={{marginRight: '8px'}}/>
                                     <span>Logout</span>
                                 </button>
                             </div>
+
                         )}
                     </div>
                 </header>
@@ -216,7 +222,7 @@ export const SidebarLayout: React.FC = () => {
                 {/* Content */}
                 <div className="sidebar-content-area">
                     <div className="sidebar-content-card sidebar-fade-in">
-                        <Outlet />
+                        <Outlet/>
                     </div>
                 </div>
             </main>

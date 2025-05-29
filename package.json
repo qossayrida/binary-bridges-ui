@@ -14,7 +14,7 @@
     "postinstall": "npm pack"
   },
   "dependencies": {
-    "@binary-bridges/binary-bridges-axios-client-api": "^1.0.1",
+    "@binary-bridges/binary-bridges-axios-client-api": "latest",
     "@hookform/resolvers": "^5.0.1",
     "axios": "^1.3.0",
     "primereact": "^10.9.5",

@@ -122,6 +122,11 @@ git push origin main
 1. Install the SDK:
 ```bash
 npm install @binary-bridges/binary-bridges-axios-client-api
+
+# or use 
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
 ```
 
 2. Import and use:

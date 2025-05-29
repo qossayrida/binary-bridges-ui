@@ -18,6 +18,7 @@ export async function apiLogin(LoginRequest: LoginRequest) {
     }
 }
 
+
 export async function apiSignup(SignupRequest: SignupRequest) {
     try {
         const response = await authControllerApi.signup(SignupRequest);
