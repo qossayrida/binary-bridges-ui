@@ -2,13 +2,13 @@ import type { JSX } from 'react';
 import { FaHome, FaUserEdit, FaBook, FaDollarSign } from 'react-icons/fa';
 import React, {lazy} from "react";
 
-const HomePage = lazy(() => import('../pages/HomePage.tsx'));
-const AuthorsPage = lazy(() => import('../pages/AuthorsPage.tsx'));
-const BooksPage = lazy(() => import('../pages/BooksPage.tsx'));
-const SalesPage = lazy(() => import('../pages/SalesPage.tsx'));
+const HomePage = lazy(() => import('../pages/home/HomePage.tsx'));
+const AuthorsPage = lazy(() => import('../pages/author/AuthorsPage.tsx'));
+const BooksPage = lazy(() => import('../pages/book/BooksPage.tsx'));
+const SalesPage = lazy(() => import('../pages/sale/SalesPage.tsx'));
 
 
-const AuthorsAddPage = lazy(() => import('../pages/AuthorAddPage.tsx'));
+const AuthorsAddPage = lazy(() => import('../pages/author/AuthorAddPage.tsx'));
 
 interface AppRoute {
     path: string;

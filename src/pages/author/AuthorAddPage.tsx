@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Input, Button } from '../components/ui';
-import { apiCreateAuthor } from '../service/authorservice';
+import { Input, Button } from '../../components/ui';
+import { apiCreateAuthor } from '../../service/authorservice.ts';
 import type { AuthorDTO } from '@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models';
 
 // ✅ Schema for validation using Zod

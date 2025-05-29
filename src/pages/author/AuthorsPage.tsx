@@ -1,8 +1,8 @@
 import React, {JSX, useEffect, useState} from 'react';
-import { apiGetAllAuthors } from '../service/authorservice';
+import { apiGetAllAuthors } from '../../service/authorservice.ts';
 import type { AuthorDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
-import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
-import { RowActions } from '../components/ui/RowActions'; // adjust the path as needed
+import { DataTablePage, ColumnConfig } from '../../components/ui/DataTablePage.tsx';
+import { RowActions } from '../../components/ui/RowActions.tsx'; // adjust the path as needed
 import {useNavigate} from "react-router-dom";
 
 export const AuthorsPage = () => {

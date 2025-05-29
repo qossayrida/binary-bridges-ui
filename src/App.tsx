@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { SidebarLayout } from './components/layout/SidebarLayout';
-import { AuthPage } from './pages/AuthPage.tsx';
+import { AuthPage } from './pages/auth/AuthPage.tsx';
 import { appRoutes } from './config/routesConfig.tsx';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';

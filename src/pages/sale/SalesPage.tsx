@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { apiGetAllSales } from '../service/saleservice';
+import { apiGetAllSales } from '../../service/saleservice.ts';
 import type { SaleDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
-import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
-import {RowActions} from "../components/ui/RowActions.tsx";
+import { DataTablePage, ColumnConfig } from '../../components/ui/DataTablePage.tsx';
+import {RowActions} from "../../components/ui/RowActions.tsx";
 
 export const SalesPage = () => {
     const [sales, setSales] = useState<SaleDTO[]>([]);

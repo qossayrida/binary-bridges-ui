@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { AuthForm } from '../components/auth/AuthForm';
-import { useAuth } from '../context/AuthContext';
-import {Button} from "../components/ui";
+import { AuthForm } from './AuthForm.tsx';
+import { useAuth } from '../../context/AuthContext.tsx';
+import {Button} from "../../components/ui";
 
 export const AuthPage: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);

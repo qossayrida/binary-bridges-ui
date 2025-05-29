@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { apiGetAllBooks } from '../service/bookservice.ts';
+import { apiGetAllBooks } from '../../service/bookservice.ts';
 import type { BookDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
-import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
-import {RowActions} from "../components/ui/RowActions.tsx";
+import { DataTablePage, ColumnConfig } from '../../components/ui/DataTablePage.tsx';
+import {RowActions} from "../../components/ui/RowActions.tsx";
 
 
 export const BooksPage = () => {

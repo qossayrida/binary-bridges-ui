@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { apiLogin, apiSignup } from '../../service/authservice';
-import {Input,Button} from "../ui";
+import { apiLogin, apiSignup } from '../../service/authservice.ts';
+import {Input,Button} from "../../components/ui";
 import type { LoginRequest, SignupRequest } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 
 
