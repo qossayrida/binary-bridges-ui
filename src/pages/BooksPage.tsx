@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { apiGetAllBooks } from '../service/bookservice.ts';
 import type { BookDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
+import {RowActions} from "../components/ui/RowActions.tsx";
 
 
 export const BooksPage = () => {
@@ -62,17 +63,12 @@ export const BooksPage = () => {
             checked: true,
             style: { width: '8rem' },
             body: (rowData: BookDTO) => (
-                <div className="entity-actions">
-                    <button className="action-btn view" title="View Book">
-                        👁️
-                    </button>
-                    <button className="action-btn edit" title="Edit Book">
-                        ✏️
-                    </button>
-                    <button className="action-btn delete" title="Delete Book">
-                        🗑️
-                    </button>
-                </div>
+                <RowActions
+                    row={rowData}
+                    onView={(book) => console.log('View', book)}
+                    onEdit={(book) => console.log('Edit', book)}
+                    onDelete={(book) => console.log('Delete', book)}
+                />
             )
         }
     ];

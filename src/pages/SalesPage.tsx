@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { apiGetAllSales } from '../service/saleservice';
 import type { SaleDTO } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 import { DataTablePage, ColumnConfig } from '../components/ui/DataTablePage';
+import {RowActions} from "../components/ui/RowActions.tsx";
 
 export const SalesPage = () => {
     const [sales, setSales] = useState<SaleDTO[]>([]);
@@ -64,17 +65,12 @@ export const SalesPage = () => {
             checked: true,
             style: { width: '8rem' },
             body: (rowData: SaleDTO) => (
-                <div className="entity-actions">
-                    <button className="action-btn view" title="View Sale Details">
-                        👁️
-                    </button>
-                    <button className="action-btn edit" title="Edit Sale">
-                        ✏️
-                    </button>
-                    <button className="action-btn receipt" title="Print Receipt">
-                        🧾
-                    </button>
-                </div>
+                <RowActions
+                    row={rowData}
+                    onView={(sale) => console.log('View', sale)}
+                    onEdit={(sale) => console.log('Edit', sale)}
+                    onDelete={(sale) => console.log('Delete', sale)}
+                />
             )
         }
     ];
