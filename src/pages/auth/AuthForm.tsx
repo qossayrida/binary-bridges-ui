@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { apiLogin, apiSignup } from '../../service/authservice.ts';
+import { apiLogin, apiSignup, apiUploadImage } from '../../service/authservice.ts';
 import { Input, Button } from "../../components/ui";
 import type { LoginRequest, SignupRequest } from "@binary-bridges/binary-bridges-axios-client-api/dist/com/binary-bridges/client/sdk/typescript/models";
 
@@ -26,12 +26,32 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
     const [identifier, setIdentifier] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageFile, setImageFile] = useState<File | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                setError('Please select a valid image file');
+                return;
+            }
+            // Validate file size (e.g., 5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+                setError('Image file size must be less than 5MB');
+                return;
+            }
+            setImageFile(file);
+            setError(null);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
+        setIsUploading(true);
 
         try {
             let res: AuthResponse;
@@ -43,11 +63,26 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
                 };
                 res = await apiLogin(loginRequest);
             } else {
+                let imageUrl: string | undefined;
+
+                // Upload image if provided
+                if (imageFile) {
+                    try {
+                        const uploadResponse = await apiUploadImage(imageFile);
+                        imageUrl = uploadResponse.url || uploadResponse.imageUrl; // Adjust based on your API response structure
+                    } catch (uploadError) {
+                        console.error("Image upload failed:", uploadError);
+                        setError('Failed to upload image. Please try again.');
+                        setIsUploading(false);
+                        return;
+                    }
+                }
+
                 const signupRequest: SignupRequest = {
                     username,
                     email: identifier,
                     password,
-                    imageUrl: imageUrl || undefined,
+                    imageUrl,
                 };
                 res = await apiSignup(signupRequest);
             }
@@ -56,6 +91,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
         } catch (err) {
             setError('Authentication failed');
             console.error("Auth error:", err);
+        } finally {
+            setIsUploading(false);
         }
     };
 
@@ -69,12 +106,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Username"
                         required
-                    />
-                    <Input
-                        type="text"
-                        value={imageUrl}
-                        onChange={(e) => setImageUrl(e.target.value)}
-                        placeholder="Profile Image URL (optional)"
                     />
                 </>
             )}
@@ -97,11 +128,33 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isLogin, onSuccess }) => {
                 error={error ? ' ' : undefined}
             />
 
+            {!isLogin && (
+                <>
+                    <div className="profile-image-container">
+                        <label htmlFor="profile-image" className="profile-image-label">
+                            Profile Image (optional)
+                        </label>
+                        <input
+                            id="profile-image"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="profile-image-input"
+                        />
+                        {imageFile && (
+                            <p className="profile-image-info">
+                                Selected: {imageFile.name} ({(imageFile.size / 1024).toFixed(1)} KB)
+                            </p>
+                        )}
+                    </div>
+                </>
+            )}
+
             {error && <p className="ui-input-error-text ui-text-center">{error}</p>}
 
             <div className="ui-flex ui-justify-center">
-                <Button type="submit">
-                    {isLogin ? 'Login' : 'Sign Up'}
+                <Button type="submit" disabled={isUploading}>
+                    {isUploading ? 'Processing...' : (isLogin ? 'Login' : 'Sign Up')}
                 </Button>
             </div>
         </form>

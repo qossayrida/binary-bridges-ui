@@ -118,3 +118,132 @@
     padding: 0 0.5rem;
     font-size: 0.875rem;
 }
+
+
+/* Profile Image Upload Styles */
+.profile-image-container {
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0; /* Margin for spacing */
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.profile-image-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.profile-image-input {
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-image-input:hover {
+    border-color: #9ca3af;
+}
+
+.profile-image-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* File input button styling */
+.profile-image-input::file-selector-button {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-image-input::file-selector-button:hover {
+    background-color: #dbeafe;
+}
+
+/* For webkit browsers */
+.profile-image-input::-webkit-file-upload-button {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-image-input::-webkit-file-upload-button:hover {
+    background-color: #dbeafe;
+}
+
+.profile-image-info {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+/* Alternative styling that matches your auth card better */
+.profile-image-container-card {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+.profile-image-container-card .profile-image-label {
+    color: #111827;
+    font-weight: 600;
+}
+
+.profile-image-container-card .profile-image-input {
+    background-color: white;
+    border: 2px dashed #d1d5db;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-image-container-card .profile-image-input:hover {
+    border-color: #2563eb;
+    background-color: #f8fafc;
+}
+
+.profile-image-container-card .profile-image-input::file-selector-button,
+.profile-image-container-card .profile-image-input::-webkit-file-upload-button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 0.75rem;
+}
+
+.profile-image-container-card .profile-image-input::file-selector-button:hover,
+.profile-image-container-card .profile-image-input::-webkit-file-upload-button:hover {
+    background-color: #1d4ed8;
+}
